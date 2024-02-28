@@ -12,6 +12,9 @@ I believe that hands-on learning is crucial for understanding and thus, the expl
   - Go to the original repository's page: https://github.com/myothida/PythonProgramming.git
   - Click on the "Fork" button in the top-right corner. This will create a copy of the repository under your GitHub account
 
+    [image](https://github.com/myothida/PythonProgramming/assets/88795729/e5ce78ec-371e-4c14-9a29-8cf42db1cbcb)
+
+
 ### Upload your files to the your own repo. 
 Refer to this Github documents: https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository. 
   - Go to your forked repository's page on GitHub.
