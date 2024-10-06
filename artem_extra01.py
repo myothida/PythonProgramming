@@ -1,50 +1,55 @@
-from random import randint as r #Generates random number from 0 to 100
-x=r(0,100)
-i=0
-while i!=10: #loop while will work until 10 attempts will run out
-  i=i+1 
+from random import randint #Generates random number from 0 to 1000
+myRandomNumber = randint(0,1000)
+i = 0
+while i != 10: #loop while will work until 10 attempts will run out
+  i = i+1 
   guess=input("Enter your guess: ") #Player can enter his guessing number
   try:
-    if int(guess)>100 or int(guess)<0:
-      print("Enter number from 0 to 100")
-      i=i-1 #If the value is incorrect, it won't count as an attempt to guess the number
-    if i==10:
-      print("You lost") #If all 10 attempts were used, the game is over
-      while True:
-        try:
-          Answer = int(input("Do you wanna play again? Yes(1)/No(2): ")) #If someone wants to continue the game, they can enter 1 to continue or 2 to exit
-          if Answer==1: #Continues the game
-            x=r(0, 100)
-            i=0
-            break
-          elif Answer==2: #Exits the game
-            break
-        except ValueError: #Incorrect value will return to the same question
-          print("Enter correct value('1' to continue and '2' to exit game): ")
-      if Answer == 2:
+    if int(guess) > 1000 or int(guess) < 0:
+      print("Enter number between 0 and 1000")
+      i = i-1 #If the value is invalid, it won't count as an attempt to guess the number
+      continue
+    if i == 10 and myRandomNumber!=int(guess): # If all 10 attempts were used 
+                                               # and the player didn't guess the number,
+                                               # the game is over
+      print("You lost") 
+      print("The number was: ", myRandomNumber)
+      Answer = input("Do you wanna play again? Yes/No: ") # asking whether player wants to play again or not
+      while Answer.lower() != "yes" or Answer.lower() != "no" :
+        if Answer.lower() == "yes": # Continues the game
+          myRandomNumber = randint(0, 1000)
+          i = 0
+          break
+        if Answer.lower() == "no": # Exits the game
+          break
+        else: #Incorrect value will return to the same question whether player wants to play again or not
+          Answer=input("Enter correct value('Yes' to continue and 'No' to exit the game): ")
+          continue
+      if Answer.lower() == "no": # Exits the game
         break
-    elif int(guess)>x: #If the guessed number is greater than actual one, program will say 'Too high, try again'
+    elif int(guess) > myRandomNumber: #If the guessed number is greater than actual one...
       print("Too high, try again!")
       continue
-    elif int(guess)<x: #If the guessed number is lower than actual one, program will say 'Too low, try again'
+    elif int(guess) < myRandomNumber: #If the guessed number is lower than actual one...
       print("Too low, try again!")
       continue
-    elif int(guess)==x:
-      print("Correct!\nCongratulations! You won!") #If the guessed number is equal to the actual one, program will congratulate player
-      while True:
-        try:
-          Answer = int(input("Do you wanna play again? Yes(1)/No(2): ")) #If someone wants to continue the game, they can enter 1 to continue or 2 to exit
-          if Answer==1: #Continues the game
-            x=r(0, 100)
-            i=0
-            break
-          elif Answer==2: #Exits the game
-            break
-        except ValueError: #Incorrect value will return to the same question
-          print("Enter correct value('1' to continue and '2' to exit game): ")
-      if Answer == 2:
+    if int(guess) == myRandomNumber:
+      print("Correct!\nCongratulations! You won!") # If the guessed number is equal to the actual one
+                                                   # program will congratulate player
+      Answer = input("Do you wanna play again? Yes/No: ")  # asking whether player wants to play again or not
+      while Answer.lower() != "yes" or Answer.lower() != "no" :
+        if Answer.lower() == "yes": # Continues the game
+          myRandomNumber = randint(0, 1000)
+          i = 0
+          break
+        if Answer.lower() == "no": # Exits the game
+          break
+        else: # Invalid value will return to the same question whether player wants to play again or not
+          Answer=input("Enter correct value('Yes' to continue and 'No' to exit the game): ")
+          continue
+      if Answer.lower() == "no": # Exits the game
         break
-  except ValueError: #Incorrect value will return player to guess the number again
-    print("Enter correct value (integer from 0 to 100)")
+  except ValueError: #Invalid value will return player to guess the number again
+    print("Enter correct value (integer from 0 to 1000)")
     i=i-1
     continue
